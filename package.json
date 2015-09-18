@@ -1,0 +1,15 @@
+{
+  "name": "svg-server",
+  "version": "1.0.0",
+  "description": "Server that computes SVG markup for regular expressions",
+  "main": "svg_server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Head",
+  "license": "ISC",
+  "dependencies": {
+    "selenium-webdriver": "^2.46.1"
+    "yargs": "^3.25.0"
+  }
+}
