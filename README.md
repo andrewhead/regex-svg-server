@@ -6,9 +6,9 @@ Start the server with:
 
     node svg_server.js
 
-However, please be responsible and route the SVG server to a local clone of the [Regexper server](https://github.com/javallone/regexper):
+Please be responsible and route the SVG server to a local clone of the [Regexper server](https://github.com/javallone/regexper):
 
-    node -r localhost:<regexper-port>
+    node -r localhost:<regexper-port> svg_server.js
 
 Query an SVG for the regular expression with
 
