@@ -5,14 +5,13 @@ var http = require('http');
 var url = require('url');
 
 var argv = require('yargs')
-    .default('--host', '127.0.0.1')
-    .default('--port', 8080)
-    .default('--regexper', 'http://regexper.com')
-    .alias('--regexper', '-r')
+    .default('port', 8080)
+    .default('regexper', 'http://regexper.com')
+    .alias('regexper', 'r')
     .argv;
 
 
-function runServer(host, port, regexperEndpoint) {
+function runServer(port, regexperEndpoint) {
 
     // Start by creating a Firefox browser that can route our requests to Regexper
     // You will probably want to make this browser 'headless' if your server has no display
@@ -34,18 +33,19 @@ function runServer(host, port, regexperEndpoint) {
 
     // Build a server that listens for requests and forwards them to Regexper
     var server = http.createServer(function (req, resp) {
-    var urlinfo = url.parse(req.url, true);
-    var pattern = urlinfo.query.pattern;
-    fetchSvg(pattern, function (err, svg) {
-        if (err) {
-            console.error(err);
-        }
-        resp.writeHead(200, {'Content-Type': 'plain/text'});
-            resp.end(svg + '\n');
-        });
+        var urlinfo = url.parse(req.url, true);
+        var pattern = urlinfo.query.pattern;
+        fetchSvg(pattern, function (err, svg) {
+            if (err) {
+                console.error(err);
+            }
+            resp.writeHead(200, {'Content-Type': 'plain/text'});
+                resp.end(svg + '\n');
+            });
     });
-    server.listen(port, host);
+    server.listen(port);
+    console.log("Server lauched on port", port);
 
 }
 
-runServer(argv.host, argv.port, argv.regexper);
+runServer(argv.port, argv.regexper);
